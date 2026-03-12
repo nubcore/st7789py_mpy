@@ -163,6 +163,12 @@ _DISPLAY_240x240 = (
     (0xc0, 240, 240,  0, 80, False),
     (0xa0, 240, 240, 80,  0, False))
 
+_DISPLAY_76x284 = (
+    (0x00, 76, 284, 82, 18, False),
+    (0x60, 284, 76, 18, 82, False),
+    (0xc0, 135, 284, 82, 18, False),
+    (0xa0, 284, 76, 18, 82, False))
+
 _DISPLAY_135x240 = (
     (0x00, 135, 240, 52, 40, False),
     (0x60, 240, 135, 40, 53, False),
@@ -187,7 +193,8 @@ _SUPPORTED_DISPLAYS = (
     (240, 320, _DISPLAY_240x320),
     (240, 240, _DISPLAY_240x240),
     (135, 240, _DISPLAY_135x240),
-    (128, 128, _DISPLAY_128x128))
+    (128, 128, _DISPLAY_128x128),
+    (76, 284, _DISPLAY_76x284))
 
 # init tuple format (b'command', b'data', delay_ms)
 _ST7789_INIT_CMDS = (
@@ -208,7 +215,7 @@ _ST7789_INIT_CMDS = (
     ( b'\xe0', b'\xd0\x00\x02\x07\x0a\x28\x32\x44\x42\x06\x0e\x12\x14\x17', 0),
                                             # Set gamma curve negative polarity
     ( b'\xe1', b'\xd0\x00\x02\x07\x0a\x28\x31\x54\x47\x0e\x1c\x17\x1b\x1e', 0),
-    ( b'\x21', b'\x00', 0),                 # Enable display inversion
+#    ( b'\x21', b'\x00', 0),                 # Enable display inversion
     ( b'\x29', b'\x00', 120)                # Turn on the display
 )
 
@@ -308,7 +315,7 @@ class ST7789:
         self.fill(0x0)
 
         if backlight is not None:
-            backlight.value(1)
+            backlight.value(0)  # 0 == ON (inverted)
 
     @staticmethod
     def _find_rotations(width, height):
