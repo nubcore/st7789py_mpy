@@ -1,11 +1,14 @@
 MicroPython LCD Driver in Python
 ================================
 
-This is a fork of devbis' st7789py_mpy module from
-https://github.com/devbis/st7789py_mpy.
+This is a fork of russhughes fork of devbis' st7789py_mpy module from
+https://github.com/russhughes/st7789py_mpy & https://github.com/devbis/st7789py_mpy.
+
+Note: color_inversion was swapped, so default is OFF.
 
 This driver has support for:
 
+- 284x76 (Added by NUBcore)
 - 320x240, 240x240, 135x240, and 128x128 pixel and other displays
 - RGB and BGR Color Orders
 - Display rotation
@@ -24,6 +27,7 @@ Examples
 See the examples directory for example programs that run on:
 
 - ESP32
+  - Generic ESP32-S3 w/284x76 (Dumb Clock)
   - Generic ESP32 320x240
   - LilyGo T-DISPLAY 135x240
   - LilyGo T-Dongle-S3 80x160 (ST7735)
